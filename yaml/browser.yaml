@@ -2,6 +2,9 @@ browserType:
   browserName: Firefox
   #browserName: Chrome
   #browserName: IE
+  #browserName: Edge
+  #browserName: Opera
+  #browserName: Safari
 
 WebUrl:
   URL: https://www.smartbuyglasses.com

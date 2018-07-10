@@ -20,7 +20,7 @@ class BrowserDriver(object):
     def __init__(self, driver):
         self.driver = driver
 
-    def openbrowser(self, driver):
+    def open_browser(self, driver):
         # 读取配置文件
         file_path = os.path.dirname(os.getcwd())
         name_path = file_path + '/yaml/browser.yaml'
@@ -30,8 +30,7 @@ class BrowserDriver(object):
         brow = temp['browserType']['browserName']
         browser = brow
         logger.info("选择的浏览器为: %s 浏览器" % browser)
-        ur = temp['WebUrl']['URL']
-        url = ur
+        url = temp['WebUrl']['URL']
         logger.info("打开的URL为: %s" % url)
         if browser == "Firefox":
             driver = webdriver.Firefox()
@@ -51,13 +50,12 @@ class BrowserDriver(object):
         elif browser == "Safari":
             driver = webdriver.Safari(self.safari_driver_path)
             logger.info("启动Safari浏览器")
-
-        driver.get(url)
-        logger.info("打开URL: %s" % url)
         driver.maximize_window()
         logger.info("全屏当前窗口")
         driver.implicitly_wait(5)
         logger.info("设置5秒隐式等待时间")
+        driver.get(url)
+        logger.info("打开URL: %s" % url)
         return driver
 
     def quit_browser(self):
