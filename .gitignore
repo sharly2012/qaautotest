@@ -3,3 +3,4 @@
 /logs/
 /.idea/
 /report/result.html
+/TestCase/geckodriver.log
