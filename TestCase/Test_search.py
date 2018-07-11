@@ -15,7 +15,7 @@ class TestSearch(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_login(self):
+    def test_search(self):
         homepage = HomePage(self.driver)
         homepage.send_key(homepage.search_box, 'Ray Ban')
         homepage.click(homepage.search_button)
