@@ -11,6 +11,6 @@ class HomePage(BasePage):
     login_button = (By.XPATH, "//li[@id='signin_li']/div/div/span/a")
     username = (By.ID, 'username')
     password = (By.ID, 'password')
-    sign_in_butttn = (By.XPATH, "//form[@id='loginFormNew']/span")
+    sign_in_button = (By.XPATH, "//form[@id='loginFormNew']/span")
     search_box = (By.ID, 'search_input')
     search_button = (By.ID, 'search_button')
