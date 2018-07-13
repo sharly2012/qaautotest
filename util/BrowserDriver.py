@@ -11,7 +11,7 @@ logger = Logger(logger="BrowserDriver").getlog()
 class BrowserDriver(object):
     # 这是获取相对路径的方法
     path = os.path.dirname(os.path.abspath('.'))
-    chrome_driver_path = path + '/driver/chromedriver.exe'
+    chrome_driver_path = path + '/usr/local/bin/chromedriver'
     ie_driver_path = path + '/driver/IEDriverServer.exe'
     edge_driver_path = path + '/driver/MicrosoftWebDriver.exe'
     opera_driver_path = path + '/driver/operadriver.exe'
@@ -36,10 +36,10 @@ class BrowserDriver(object):
             driver = webdriver.Firefox()
             logger.info("启动火狐浏览器")
         elif browser == "Chrome":
-            driver = webdriver.Chrome(self.chrome_driver_path)
+            driver = webdriver.Chrome()
             logger.info("启动谷歌浏览器")
         elif browser == "IE":
-            driver = webdriver.Ie(self.ie_driver_path)
+            driver = webdriver.IE(self.ie_driver_path)
             logger.info("启动IE浏览器")
         elif browser == "Edge":
             driver = webdriver.Edge(self.edge_driver_path)
@@ -51,6 +51,7 @@ class BrowserDriver(object):
             driver = webdriver.Safari(self.safari_driver_path)
             logger.info("启动Safari浏览器")
         driver.maximize_window()
+        driver.set_window_size(1440, 900)
         logger.info("全屏当前窗口")
         driver.implicitly_wait(5)
         logger.info("设置5秒隐式等待时间")

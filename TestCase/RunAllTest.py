@@ -8,9 +8,8 @@ from report.runner.HTMLTestRunner3 import HTMLTestRunner
 
 
 def create_suite():
-    TestSuite = unittest.TestSuite()  # 测试集
+    test_suite = unittest.TestSuite()  # 测试集
     test_dir = os.path.dirname(os.getcwd()) + '/TestCase/'
-    # print(test_dir)
 
     discover = unittest.defaultTestLoader.discover(
         start_dir=test_dir,
@@ -19,9 +18,9 @@ def create_suite():
     )
 
     for test_case in discover:
-        TestSuite.addTests(test_case)
+        test_suite.addTests(test_case)
         # print(test_case)
-    return TestSuite
+    return test_suite
 
 
 def report():
@@ -36,12 +35,12 @@ def report():
 
 
 if __name__ == '__main__':
-    TestSuite = create_suite()
+    test_suite = create_suite()
     fp = open(report(), 'wb')
     Runner = HTMLTestRunner(
         stream=fp,
         title='测试报告',
         description='测试用例执行情况'
     )
-    Runner.run(TestSuite)
+    Runner.run(test_suite)
     fp.close()

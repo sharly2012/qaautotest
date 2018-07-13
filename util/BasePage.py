@@ -5,6 +5,7 @@ from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 import os.path
 from .logger import Logger
 import time
@@ -150,7 +151,7 @@ class BasePage(object):
     def js_focus_element(self, locator):
         """聚焦元素"""
         target = self.find_element(*locator)
-        self.driver.execute_script("arguments[0].scrollIntoView();", target)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", target)
 
     def js_scroll_top(self):
         """滚动到顶部"""
@@ -261,3 +262,47 @@ class BasePage(object):
         except Exception as e:
             logger.error("Failed to upload file %s" % e)
             self.get_screent_img()
+
+    def close_geo_popup(self):
+        try:
+            geo_location_close = (By.XPATH, '//div[@id="wrapper"]/div[7]/div[2]/a')
+            WebDriverWait(self.driver, 10, 1).until(EC.element_to_be_clickable(geo_location_close))
+            self.click(geo_location_close)
+        except Exception as e:
+            logger.error("Not found GEO pop-up. ---%s" % e)
+
+    def close_newsletter_popup(self):
+        try:
+            newsletter_popup_close = (By.CSS_SELECTOR,
+                                      'EDM-popUp > div.EDM-popUp-box > div > a.EDM-popUp-close.close_btn')
+            self.click(newsletter_popup_close)
+        except Exception as e:
+            logger.error("Not found newsletter pop-up. ---%s" % e)
+
+    def is_element_present(self, how, what):
+        try:
+            self.driver.find_element(by=how, value=what)
+        except NoSuchElementException as e:
+            logger.error("Element is not present. %s" % e)
+            return False
+        return True
+
+    def is_alert_present(self):
+        try:
+            self.driver.switch_to.alert
+        except NoAlertPresentException as e:
+            logger.error("No Alert is present. %s" % e)
+            return False
+        return True
+
+    def close_alert_and_get_its_text(self):
+        try:
+            alert = self.driver.switch_to.alert()
+            alert_text = alert.text
+            if self.accept_next_alert:
+                alert.accept()
+            else:
+                alert.dismiss()
+            return alert_text
+        finally:
+            self.accept_next_alert = True

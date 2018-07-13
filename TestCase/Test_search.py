@@ -17,15 +17,17 @@ class TestSearch(unittest.TestCase):
 
     def test_search(self):
         homepage = HomePage(self.driver)
+        homepage.close_geo_popup()
+        homepage.close_newsletter_popup()
         homepage.send_key(homepage.search_box, 'Ray Ban')
         homepage.click(homepage.search_button)
+
+    def tearDown(self):
+        pass
 
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
-
-    def tearDown(self):
-        pass
 
 
 if __name__ == '__main__':

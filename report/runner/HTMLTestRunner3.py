@@ -1,23 +1,22 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import datetime
+import sys
+import io
+import unittest
+from xml.sax import saxutils
+
 """
 A TestRunner for use with the Python unit testing framework. It
 generates a HTML report to show the result at a glance.
-
 The simplest way to use this is to invoke its main method. E.g.
-
     import unittest
     import HTMLTestRunner
-
     ... define your tests ...
-
     if __name__ == '__main__':
         HTMLTestRunner.main()
-
-
 For more customization options, instantiates a HTMLTestRunner object.
 HTMLTestRunner is a counterpart to unittest's TextTestRunner. E.g.
-
     # output to a file
     fp = file('my_report.html', 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(
@@ -25,23 +24,17 @@ HTMLTestRunner is a counterpart to unittest's TextTestRunner. E.g.
                 title='My unit test',
                 description='This demonstrates the report output by HTMLTestRunner.'
                 )
-
     # Use an external stylesheet.
     # See the Template_mixin class for more customizable options
     runner.STYLESHEET_TMPL = '<link rel="stylesheet" href="my_stylesheet.css" type="text/css">'
-
     # run the test
     runner.run(my_test_suite)
-
-
 ------------------------------------------------------------------------
 Copyright (c) 2004-2007, Wai Yip Tung
 All rights reserved.
-
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
-
 * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
 * Redistributions in binary form must reproduce the above copyright
@@ -50,7 +43,6 @@ met:
 * Neither the name Wai Yip Tung nor the names of its contributors may be
   used to endorse or promote products derived from this software without
   specific prior written permission.
-
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
 IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
 TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -73,39 +65,27 @@ __version__ = "0.9.1"
 Change History
 Version 0.9.1
 * 用Echarts添加执行情况统计图 (灰蓝)
-
 Version 0.9.0
 * 改成Python 3.x (灰蓝)
-
 Version 0.8.3
 * 使用 Bootstrap稍加美化 (灰蓝)
 * 改为中文 (灰蓝)
-
 Version 0.8.2
 * Show output inline instead of popup window (Viorel Lupu).
-
 Version in 0.8.1
 * Validated XHTML (Wolfgang Borgert).
 * Added description of test classes and test cases.
-
 Version in 0.8.0
 * Define Template_mixin class for customization.
 * Workaround a IE 6 bug that it does not treat <script> block as CDATA.
-
 Version in 0.7.1
 * Back port to Python 2.3 (Frank Horowitz).
 * Fix missing scroll bars in detail log (Podi).
 """
 
+
 # TODO: color stderr
 # TODO: simplify javascript using ,ore than 1 class in the class attribute?
-
-import datetime
-import sys
-import io
-import time
-import unittest
-from xml.sax import saxutils
 
 
 # ------------------------------------------------------------------------
@@ -146,9 +126,7 @@ stderr_redirector = OutputRedirector(sys.stderr)
 class Template_mixin(object):
     """
     Define a HTML template for report customerization and generation.
-
     Overall structure of an HTML report
-
     HTML
     +------------------------+
     |<html>                  |
@@ -204,12 +182,11 @@ class Template_mixin(object):
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     %(stylesheet)s
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript" src="js/echarts.util.min.js"></script>
+    <script type="text/javascript" src="js/echarts.common.min.js"></script>
 </head>
 <body>
     <script language="javascript" type="text/javascript"><!--
     output_list = Array();
-
     /* level - 0:Summary; 1:Failed; 2:All */
     function showCase(level) {
         trs = document.getElementsByTagName("tr");
@@ -234,8 +211,6 @@ class Template_mixin(object):
             }
         }
     }
-
-
     function showClassDetail(cid, count) {
         var id_list = Array(count);
         var toHide = 1;
@@ -263,8 +238,6 @@ class Template_mixin(object):
             }
         }
     }
-
-
     function showTestDetail(div_id){
         var details_div = document.getElementById(div_id)
         var displayState = details_div.style.display
@@ -277,15 +250,12 @@ class Template_mixin(object):
             details_div.style.display = 'none'
         }
     }
-
-
     function html_escape(s) {
         s = s.replace(/&/g,'&amp;');
         s = s.replace(/</g,'&lt;');
         s = s.replace(/>/g,'&gt;');
         return s;
     }
-
     /* obsoleted by detail in <div>
     function showOutput(id, name) {
         var w = window.open("", //url
@@ -301,7 +271,6 @@ class Template_mixin(object):
     }
     */
     --></script>
-
     <div id="div_base">
         %(heading)s
         %(report)s
@@ -316,7 +285,6 @@ class Template_mixin(object):
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('chart'));
-
         // 指定图表的配置项和数据
         var option = {
             title : {
@@ -353,7 +321,6 @@ class Template_mixin(object):
                 }
             ]
         };
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     </script>
@@ -370,7 +337,6 @@ class Template_mixin(object):
     body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
     table       { font-size: 100%; }
     pre         { white-space: pre-wrap;word-wrap: break-word; }
-
     /* -- heading ---------------------------------------------------------------------- */
     h1 {
         font-size: 16pt;
@@ -380,25 +346,20 @@ class Template_mixin(object):
         margin-top: 0ex;
         margin-bottom: 1ex;
     }
-
     .heading .attribute {
         margin-top: 1ex;
         margin-bottom: 0;
     }
-
     .heading .description {
         margin-top: 2ex;
         margin-bottom: 3ex;
     }
-
     /* -- css div popup ------------------------------------------------------------------------ */
     a.popup_link {
     }
-
     a.popup_link:hover {
         color: red;
     }
-
     .popup_window {
         display: none;
         position: relative;
@@ -412,7 +373,6 @@ class Template_mixin(object):
         font-size: 8pt;
         /* width: 500px;*/
     }
-
     }
     /* -- report ------------------------------------------------------------------------ */
     #show_detail_line {
@@ -436,12 +396,9 @@ class Template_mixin(object):
     .errorCase  { color: #c00; font-weight: bold; }
     .hiddenRow  { display: none; }
     .testcase   { margin-left: 2em; }
-
-
     /* -- ending ---------------------------------------------------------------------- */
     #ending {
     }
-
     #div_base {
                 position:absolute;
                 top:0%;
@@ -525,18 +482,15 @@ class Template_mixin(object):
 <tr id='%(tid)s' class='%(Class)s'>
     <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
     <td colspan='5' align='center'>
-
     <!--css div popup start-->
     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_%(tid)s')" >
         %(status)s</a>
-
     <div id='div_%(tid)s' class="popup_window">
         <pre>
         %(script)s
         </pre>
     </div>
     <!--css div popup end-->
-
     </td>
 </tr>
 """  # variables: (tid, Class, style, desc, status)
