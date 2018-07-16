@@ -6,6 +6,10 @@ import time
 import unittest
 from report.runner.HTMLTestRunner3 import HTMLTestRunner
 
+curPath = os.path.abspath(os.path.dirname(__file__))
+rootPath = os.path.split(curPath)[0]
+sys.path.append(rootPath)
+
 
 def create_suite():
     test_suite = unittest.TestSuite()  # 测试集
@@ -28,9 +32,8 @@ def report():
         report_name = os.path.dirname(os.path.abspath('.')) + '/report/' + sys.argv[1] + '_result.html'
     else:
         now = time.strftime("%Y-%m-%d_%H_%M_%S_")
-        # 需要查看每段时间的测试报告，可以这样写：
         # report_name = os.getcwd() + '\\report\\'+now+'result.html'
-        report_name = os.path.dirname(os.path.abspath('.')) + '/report/result.html'
+        report_name = os.path.dirname(os.path.abspath('.')) + '/report/' + now + 'result.html'
     return report_name
 
 
