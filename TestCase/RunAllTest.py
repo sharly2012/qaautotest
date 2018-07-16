@@ -6,13 +6,9 @@ import time
 import unittest
 from report.runner.HTMLTestRunner3 import HTMLTestRunner
 
-curPath = os.path.abspath(os.path.dirname(__file__))
-rootPath = os.path.split(curPath)[0]
-sys.path.append(rootPath)
-
 
 def create_suite():
-    test_suite = unittest.TestSuite()  # 测试集
+    suites = unittest.TestSuite()  # 测试集
     test_dir = os.path.dirname(os.getcwd()) + '/TestCase/'
 
     discover = unittest.defaultTestLoader.discover(
@@ -22,9 +18,9 @@ def create_suite():
     )
 
     for test_case in discover:
-        test_suite.addTests(test_case)
+        suites.addTests(test_case)
         # print(test_case)
-    return test_suite
+    return suites
 
 
 def report():
@@ -38,12 +34,12 @@ def report():
 
 
 if __name__ == '__main__':
-    test_suite = create_suite()
+    test_suites = create_suite()
     fp = open(report(), 'wb')
     Runner = HTMLTestRunner(
         stream=fp,
         title='测试报告',
         description='测试用例执行情况'
     )
-    Runner.run(test_suite)
+    Runner.run(test_suites)
     fp.close()

@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
 """
 得到当前页面所有连接
 """
@@ -11,8 +9,8 @@ url = 'https://www.smartbuyglasses.co.uk'
 r = requests.get(url)
 r.encoding = 'utf-8'
 # 利用 re
-matchs = re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')", r.text)
-for link in matchs:
+match = re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')", r.text)
+for link in match:
     if link.find('www'):
         f = open('/Users/admin/test/test001.txt', 'r+')
         f.read()
