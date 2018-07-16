@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import *
 from time import sleep
 import openpyxl
 import configparser
@@ -41,12 +42,15 @@ def transfer_order(order_code):
     go = driver.find_element_by_id('button')
     go.click()
     ok = driver.find_element_by_xpath('//div[@id="remoteBox-footer"]/input[1]')
-    if EC.visibility_of(ok):
-        ok.click()
-        WebDriverWait(driver, 30, 0.5).until(EC.presence_of_element_located(
-            (By.XPATH, '/html/body/div[2]/div[3]/div/div/div[4]/div[2]/form/table/tbody/tr/td[2]/div/a')))
-    else:
-        pass
+    try:
+        if EC.visibility_of(ok):
+            ok.click()
+            WebDriverWait(driver, 30, 0.5).until(EC.presence_of_element_located(
+                (By.XPATH, '/html/body/div[2]/div[3]/div/div/div[4]/div[2]/form/table/tbody/tr/td[2]/div/a')))
+        else:
+            pass
+    except Exception as e:
+        print("order had been transfered" % e)
 
 
 def cancel_order(order_code):
@@ -57,7 +61,7 @@ def cancel_order(order_code):
     cancel_button = driver.find_element_by_id('button4')
     WebDriverWait(driver, 30, 0.5).until(EC.presence_of_element_located((By.ID, 'button4')))
     cancel_button.click()
-    sleep(2)
+    driver.implicitly_wait(5)
     confirm_yes = driver.find_element_by_xpath("//div[@id='return_form']/table/tbody/tr[6]/td[2]/input[@id='button6']")
     WebDriverWait(driver, 30, 0.5).until(EC.presence_of_element_located(
         (By.XPATH, "//div[@id='return_form']/table/tbody/tr[6]/td[2]/input[@id='button6']")))
@@ -99,7 +103,7 @@ def bath_cancel_order(excel_path, sheet_name):
 
 
 login()
-bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
+# bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
 bath_cancel_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
 
 driver.quit()
