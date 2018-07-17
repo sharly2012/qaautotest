@@ -13,6 +13,7 @@ import configparser
 driver = webdriver.Firefox()
 driver.implicitly_wait(10)
 driver.maximize_window()
+driver.set_window_size(1440, 900)
 driver.get('http://om.motionglobal.com')
 action = ActionChains(driver)
 config = configparser.ConfigParser()
@@ -61,7 +62,7 @@ def cancel_order(order_code):
     cancel_button = driver.find_element_by_id('button4')
     WebDriverWait(driver, 30, 0.5).until(EC.presence_of_element_located((By.ID, 'button4')))
     cancel_button.click()
-    driver.implicitly_wait(5)
+    sleep(2)
     confirm_yes = driver.find_element_by_xpath("//div[@id='return_form']/table/tbody/tr[6]/td[2]/input[@id='button6']")
     WebDriverWait(driver, 30, 0.5).until(EC.presence_of_element_located(
         (By.XPATH, "//div[@id='return_form']/table/tbody/tr[6]/td[2]/input[@id='button6']")))
@@ -104,6 +105,7 @@ def bath_cancel_order(excel_path, sheet_name):
 
 login()
 # bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
-bath_cancel_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
+# bath_cancel_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
+cancel_order("MY0279939521GV")
 
 driver.quit()
