@@ -11,7 +11,6 @@ logger = Logger(logger="BrowserDriver").getlog()
 class BrowserDriver(object):
     # 这是获取相对路径的方法
     path = os.path.dirname(os.path.abspath(''))
-    firefox_path = '/usr/local/bin/geckodriver'
     chrome_driver_path = '/usr/local/bin/chromedriver'
     ie_driver_path = path + '/driver/IEDriverServer.exe'
     edge_driver_path = path + '/driver/MicrosoftWebDriver.exe'
@@ -34,7 +33,7 @@ class BrowserDriver(object):
         url = temp['WebUrl']['URL']
         logger.info("打开的URL为: %s" % url)
         if browser == "Firefox":
-            driver = webdriver.Firefox(self.firefox_path)
+            driver = webdriver.Firefox()
             logger.info("启动火狐浏览器")
         elif browser == "Chrome":
             driver = webdriver.Chrome(self.chrome_driver_path)
