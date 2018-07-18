@@ -10,8 +10,9 @@ logger = Logger(logger="BrowserDriver").getlog()
 
 class BrowserDriver(object):
     # 这是获取相对路径的方法
-    path = os.path.dirname(os.path.abspath('.'))
-    chrome_driver_path = path + '/usr/local/bin/chromedriver'
+    path = os.path.dirname(os.path.abspath(''))
+    geckodriver = '/usr/local/bin/geckodriver'
+    chrome_driver_path = '/usr/local/bin/chromedriver'
     ie_driver_path = path + '/driver/IEDriverServer.exe'
     edge_driver_path = path + '/driver/MicrosoftWebDriver.exe'
     opera_driver_path = path + '/driver/operadriver.exe'

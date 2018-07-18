@@ -41,7 +41,7 @@ class BasePage(object):
 
     def get_screent_img(self):
         """将页面截图下来"""
-        file_path = os.path.dirname(os.path.abspath('.')) + './screenshots/'
+        file_path = os.path.dirname(os.path.abspath('')) + '/screenshots/'
         now = time.strftime("%Y-%m-%d_%H_%M_%S_")
         screen_name = file_path + now + '.png'
         try:

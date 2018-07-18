@@ -3,6 +3,7 @@
 from util.BrowserDriver import BrowserDriver
 import unittest
 import openpyxl
+from util.BasePage import BasePage
 from util.logger import Logger
 
 logger = Logger(logger="DesktopHomepageTest").getlog()
@@ -31,11 +32,10 @@ class DesktopHomepageTest(unittest.TestCase):
                 self.driver.get(web_url)
                 title = self.driver.title
                 if "Error" in title:
-                    # logger.info(web_url + " " + "ERROR")
-                    self.get_screent_img()
+                    logger.info(web_url + " " + "ERROR")
+                    BasePage().get_screent_img()
                 else:
-                    # logger.info(web_url + " " + "homepage is OK")
-                    print(web_url + " " + "homepage is OK")
+                    logger.info(web_url + " " + "homepage is OK")
 
     def assertTitle(self, title):
         try:
