@@ -31,8 +31,8 @@ def report():
         report_name = os.path.dirname(os.path.abspath('.')) + '/report/' + sys.argv[1] + '_result.html'
     else:
         now = time.strftime("%Y-%m-%d_%H_%M_%S_")
-        # report_name = os.getcwd() + '\\report\\'+now+'result.html'
         report_name = os.path.dirname(os.path.abspath('.')) + '/report/' + now + 'result.html'
+        # report_name = os.path.dirname(os.path.abspath('.')) + '/report/' + 'result.html'
     return report_name
 
 
