@@ -21,4 +21,6 @@ class HomePage(BasePage):
     menu_deals = (By.CSS_SELECTOR, "#menuN_7 > a")
     menu_sunglasses_men = (By.CSS_SELECTOR, "#menuN_level_1 > li > div > div.shop_by_left > ul:nth-child(2) > li:nth-child(1) > a")
     menu_sunglasses_women = (By.CSS_SELECTOR, "# menuN_level_1 > li > div > div.shop_by_left > ul:nth-child(2) > li:nth-child(2) > a")
+    top_sellers_sun_1 = (By.XPATH, "//ul[@id='pro_slider_sunglasses']/li/a")
+    top_sellers_eye_1 = (By.XPATH, "//ul[@id='pro_slider_eyeglasses']/li/a")
 

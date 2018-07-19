@@ -9,3 +9,8 @@ browserType:
 WebUrl:
   URL: https://www.smartbuyglasses.com
 
+
+BankCardType:
+  VISA
+  #Master
+

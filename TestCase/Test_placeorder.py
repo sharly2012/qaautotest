@@ -19,7 +19,7 @@ class UntitledTestCase(unittest.TestCase):
     def test_untitled_test_case(self):
         driver = self.driver
         driver.get("https://www.smartbuyglasses.com/")
-        driver.find_element_by_xpath("//img[@alt='Ray-Ban RB3447 Round Metal Sunglasses']").click()
+        driver.find_element_by_xpath("//ul[@id='pro_slider_sunglasses']/li/a").click()
         driver.find_element_by_xpath(
             "(//a[@onclick='addEventTrack(\"GAEvent\", \"Product Page v2\", \"click\", \"Select other size\")'])[2]").click()
         driver.find_element_by_xpath("//div[@id='suspend_product_image']/div[2]/div[5]/a/span").click()
