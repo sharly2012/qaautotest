@@ -1,6 +1,6 @@
 browserType:
-  browserName: Firefox
-  #browserName: Chrome
+  #browserName: Firefox
+  browserName: Chrome
   #browserName: IE
   #browserName: Edge
   #browserName: Opera

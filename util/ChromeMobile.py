@@ -9,7 +9,6 @@ logger = Logger(logger="Chrome_mobile").getlog()
 
 
 class MobileDriver(object):
-    # chrome_driver_path = path + '/driver/chromedriver.exe'
     chrome_driver_path = '/usr/local/bin/chromedriver'
 
     def __init__(self, driver):
@@ -21,8 +20,7 @@ class MobileDriver(object):
         with open(name_path, 'r') as f:
             temp = yaml.load(f.read())
         # 获取配置文件属性
-        brow = temp['browserType']['browserName']
-        browser = brow
+        browser = temp['browserType']['browserName']
         logger.info("选择的浏览器为: %s 浏览器" % browser)
         url = temp['WebUrl']['URL']
         mobile_emulation = {'deviceName': 'iPhone X'}
