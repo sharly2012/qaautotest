@@ -26,24 +26,21 @@ class DesktopHomepageTest(unittest.TestCase):
         sheet = wb[sheet_name]
         for i in range(1, sheet.max_row + 1, 1):
             web_url = sheet.cell(row=i, column=1).value
-            if web_url is None:
-                break
-            else:
-                self.driver.get(web_url)
-                title = self.driver.title
-                if "Error" in title:
-                    logger.info(web_url + " " + "ERROR")
-                    BasePage().get_screent_img()
-                elif title == web_url[7:]:
-                    logger.info(web_url + " " + "ERROR")
+            try:
+                if web_url is None:
+                    break
                 else:
-                    logger.info(web_url + " " + "homepage is OK")
-
-    def assertTitle(self, title):
-        try:
-            self.assertEqual(title, self.driver.title)
-        except AssertionError as e:
-            self.verificationErrors.append(str(e))
+                    self.driver.get(web_url)
+                    title = self.driver.title
+                    if "Error" in title:
+                        logger.info(web_url + " " + "ERROR")
+                        BasePage().get_screent_img()
+                    elif title == web_url[7:]:
+                        logger.info(web_url + " " + "ERROR")
+                    else:
+                        logger.info(web_url + " " + "homepage is OK")
+            except Exception as e:
+                logger.info(e)
 
     @classmethod
     def tearDownClass(cls):
