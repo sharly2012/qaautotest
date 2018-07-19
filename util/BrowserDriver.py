@@ -50,7 +50,7 @@ class BrowserDriver(object):
         elif browser == "Safari":
             driver = webdriver.Safari(self.safari_driver_path)
             logger.info("启动Safari浏览器")
-        driver.maximize_window()
+        # driver.maximize_window()
         driver.set_window_size(1440, 900)
         logger.info("全屏当前窗口")
         driver.implicitly_wait(5)
