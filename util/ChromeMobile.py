@@ -28,7 +28,7 @@ class MobileDriver(object):
         chrome_options.add_experimental_option('mobileEmulation', mobile_emulation)
         driver = webdriver.Chrome(self.chrome_driver_path, options=chrome_options)
         driver.implicitly_wait(30)
-        driver.maximize_window()
+        driver.set_window_size(1440, 900)
         logger.info("Open mobile model successfully")
         driver.get(url)
         return driver
