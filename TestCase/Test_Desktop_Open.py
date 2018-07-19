@@ -34,6 +34,8 @@ class DesktopHomepageTest(unittest.TestCase):
                 if "Error" in title:
                     logger.info(web_url + " " + "ERROR")
                     BasePage().get_screent_img()
+                elif title == web_url[7:]:
+                    logger.info(web_url + " " + "ERROR")
                 else:
                     logger.info(web_url + " " + "homepage is OK")
 
