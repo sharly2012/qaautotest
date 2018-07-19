@@ -42,13 +42,12 @@ class DesktopHomepageTest(unittest.TestCase):
             except Exception as e:
                 logger.info(e)
 
+    def tearDown(self):
+        pass
+
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
-
-    def tearDown(self):
-        self.driver.quit()
-        self.assertEqual([], self.verificationErrors)
 
 
 if __name__ == "__main__":
