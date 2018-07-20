@@ -14,7 +14,7 @@
 
 > pip3 install selenium
 
-> pip3 install pyyaml
+> pip3 install PyYAML
 
 > pip3 install openpyxl
 

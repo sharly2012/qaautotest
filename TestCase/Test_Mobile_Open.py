@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: <utf-8> -*-
+import os
 from util.ChromeMobile import MobileDriver
 import unittest
 import openpyxl
@@ -20,7 +21,8 @@ class MobileHomepageTest(unittest.TestCase):
         pass
 
     def test_homepage(self):
-        excel_path = "/Users/admin/test/website.xlsx"
+        file_path = os.path.dirname(os.getcwd())
+        excel_path = file_path + "/files/website.xlsx"
         sheet_name = "Sheet1"
         wb = openpyxl.load_workbook(excel_path)
         sheet = wb[sheet_name]
