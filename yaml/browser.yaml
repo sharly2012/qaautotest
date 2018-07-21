@@ -16,6 +16,6 @@ BankCardType:
 
 OperatingSystem:
   #systemName: Linux
-  systemName: MacOS
-  #systemName: Windows
+  #systemName: MacOS
+  systemName: Windows
 

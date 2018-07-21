@@ -5,21 +5,24 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import *
 from time import sleep
 import openpyxl
 import configparser
 
+config = configparser.ConfigParser()
+config.read("/Users/admin/PycharmProjects/sbg2018/sbg/config/config.ini")
+url = config.get("OMURL", "url")
+usr = config.get("OMAccount", "username")
+pwd = config.get("OMAccount", "password")
 driver = webdriver.Firefox()
 driver.implicitly_wait(10)
 driver.maximize_window()
 driver.set_window_size(1440, 900)
-driver.get('http://om.motionglobal.com')
+driver.get(url)
 action = ActionChains(driver)
-config = configparser.ConfigParser()
-config.read("/Users/admin/PycharmProjects/sbg2018/sbg/config/config.ini")
-usr = config.get("OMAccount", "username")
-pwd = config.get("OMAccount", "password")
+
+
+
 
 
 def login():
