@@ -6,3 +6,8 @@
 /TestCase/geckodriver.log
 /report/*.html
 /yaml/browser.yaml
+/TestCase/__pycache__/
+/pages/__pycache__/
+/report/__pycache__/
+/report/runner/__pycache__/__init__.cpython-36.pyc
+/util/__pycache__/
