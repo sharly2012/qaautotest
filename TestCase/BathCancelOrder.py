@@ -22,9 +22,6 @@ driver.get(url)
 action = ActionChains(driver)
 
 
-
-
-
 def login():
     username = driver.find_element_by_id('username')
     password = driver.find_element_by_id('password')
