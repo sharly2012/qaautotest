@@ -12,7 +12,7 @@ from report.runner.HTMLTestRunner3 import HTMLTestRunner
 
 def create_suite():
     suites = unittest.TestSuite()  # 测试集
-    test_dir = os.path.dirname(os.getcwd()) + '/TestCase/'
+    test_dir = os.path.dirname(os.getcwd()) + '/testcase/'
 
     discover = unittest.defaultTestLoader.discover(
         start_dir=test_dir,
