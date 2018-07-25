@@ -22,6 +22,10 @@
 
 > pip3 install configparser
 
+> pip3 install pytesseract
+
+> pip3 install Pillow
+
 #### 支持的浏览器及驱动：
 基于Selenium支持的所有浏览器
 
