@@ -22,7 +22,7 @@ class TestLogin(unittest.TestCase):
         homepage.clear(homepage.password)
         homepage.send_key(homepage.password, '1qaz@WSX')
         homepage.click(homepage.sign_in_button)
-
+        
     def tearDown(self):
         pass
 

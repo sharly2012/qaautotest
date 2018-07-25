@@ -1,20 +1,25 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import pytesseract
+import os
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-import os.path
+
 from .logger import Logger
 import time
+from PIL import Image
+
 
 # create a logger instance
 logger = Logger(logger='BasePage').getlog()
 
 
 class BasePage(object):
+    path = os.path.dirname(os.getcwd())
 
     def __init__(self, driver):
         """
@@ -55,7 +60,7 @@ class BasePage(object):
         logger.info('Click element by %s: %s...' % (locator[0], locator[1]))
         try:
             self.find_element(*locator).click()
-            time.sleep(2)
+            # time.sleep(1)
         except AttributeError as e:
             logger.error("无法点击元素: %s" % e)
 
@@ -72,12 +77,12 @@ class BasePage(object):
     def send_key(self, locator, text):
         logger.info('Clear input-box: %s...' % locator[1])
         self.find_element(*locator).clear()
-        time.sleep(1)
+        # time.sleep(1)
         logger.info('Input element by %s: %s...' % (locator[0], locator[1]))
         logger.info('Input: %s' % text)
         try:
             self.find_element(*locator).send_keys(text)
-            time.sleep(2)
+            # time.sleep(1)
         except Exception as e:
             logger.error("Failed to type in input box with %s" % e)
             self.get_screent_img()
@@ -258,7 +263,7 @@ class BasePage(object):
         """上传文件"""
         try:
             self.find_element(*locator).send_keys(file_path)
-            time.sleep(2)
+            time.sleep(1)
         except Exception as e:
             logger.error("Failed to upload file %s" % e)
             self.get_screent_img()
@@ -306,3 +311,33 @@ class BasePage(object):
             return alert_text
         finally:
             self.accept_next_alert = True
+
+    def get_attribute(self, locator):
+        try:
+            text_content = self.find_element(*locator).get_attribute('textContent')
+        except Exception as e:
+            logger.error("Failed to upload file %s" % e)
+            self.get_screent_img()
+        return text_content
+
+    def image_to_string(self, locator):
+        # 截取当前网页，该网页有我们需要的验证码
+        self.driver.save_screenshot(self.path + "/screenshots/" + "All.png")
+        img_element = self.find_element(*locator)
+        # 获取验证码x,y轴坐标
+        location = img_element.location
+        # 获取验证码的长宽
+        size = img_element.size
+        rangle = (int(location['x']), int(location['y']), int(location['x'] + size['width']),
+                  # 写成我们需要截取的位置坐标
+                  int(location['y'] + size['height']))
+        i = Image.open(self.path + "/screenshots/" + "All.png")
+        # 使用Image的crop函数，从截图中再次截取我们需要的区域
+        result = i.crop(rangle)
+        result.save(self.path + "/screenshots/" + "result.png")
+        # rgb_im = result.convert('RGB')
+        # result_image = rgb_im.save(path + "/screenshots/" + "result.jpg")
+        img = Image.open(self.path + "/screenshots/" + "result.png")
+        text = pytesseract.image_to_string(img)
+        logger.info("Verify code is: " + text)
+        return text

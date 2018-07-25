@@ -11,7 +11,8 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read("/Users/admin/PycharmProjects/sbg2018/sbg/config/config.ini")
-url = config.get("OMURL", "url")
+# url = config.get("OMUrl", "url")
+url = 'http://om.motionglobal.com'
 usr = config.get("OMAccount", "username")
 pwd = config.get("OMAccount", "password")
 driver = webdriver.Firefox()
@@ -104,8 +105,8 @@ def bath_cancel_order(excel_path, sheet_name):
 
 
 login()
-# bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
-# bath_cancel_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
-cancel_order("MY0279939521GV")
+bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
+bath_cancel_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
+# cancel_order("MY0279939521GV")
 
 driver.quit()
