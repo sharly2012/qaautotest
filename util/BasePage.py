@@ -2,15 +2,14 @@
 # -*- coding: utf-8 -*-
 import pytesseract
 import os
+import time
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-
-from .logger import Logger
-import time
+from util.logger import Logger
 from PIL import Image
 
 # create a logger instance
@@ -343,9 +342,9 @@ class BasePage(object):
         # 使用Image的crop函数，从截图中再次截取我们需要的区域
         result = i.crop(rangle)
         result.save(self.path + "/screenshots/" + "result.png")
-        # rgb_im = result.convert('RGB')
-        # result_image = rgb_im.save(path + "/screenshots/" + "result.jpg")
-        img = Image.open(self.path + "/screenshots/" + "result.png")
+        rgb_im = result.convert('RGB')
+        rgb_im.save(self.path + "/screenshots/" + "result.jpg")
+        img = Image.open(self.path + "/screenshots/" + "result.jpg")
         text = pytesseract.image_to_string(img)
         logger.info("Verify code is: " + text)
         return text
