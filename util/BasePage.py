@@ -13,7 +13,6 @@ from .logger import Logger
 import time
 from PIL import Image
 
-
 # create a logger instance
 logger = Logger(logger='BasePage').getlog()
 
@@ -47,7 +46,7 @@ class BasePage(object):
     def get_screent_img(self):
         """将页面截图下来"""
         file_path = os.path.dirname(os.path.abspath('')) + '/screenshots/'
-        now = time.strftime("%Y-%m-%d_%H_%M_%S_")
+        now = time.strftime("%Y-%m-%d_%H_%M_%S")
         screen_name = file_path + now + '.png'
         try:
             self.driver.get_screenshot_as_file(screen_name)
@@ -186,7 +185,8 @@ class BasePage(object):
     def is_text_in_element(self, locator, text, timeout=10):
         """判断文本在元素里，没定位到元素返回False，定位到元素返回判断结果布尔值"""
         try:
-            result = WebDriverWait(self.driver, timeout, 1).until(EC.text_to_be_present_in_element(locator, text))
+            result = WebDriverWait(self.driver, timeout, 1).until(
+                EC.text_to_be_present_in_element(locator, text))
         except TimeoutException:
             print("元素没有定位到:" + str(locator))
             return False
@@ -219,7 +219,8 @@ class BasePage(object):
 
     def is_selected(self, locator, timeout=10):
         """判断元素被选中，返回布尔值,"""
-        result = WebDriverWait(self.driver, timeout, 1).until(EC.element_located_to_be_selected(locator))
+        result = WebDriverWait(self.driver, timeout, 1).until(
+            EC.element_located_to_be_selected(locator))
         return result
 
     def is_selected_be(self, locator, selected=True, timeout=10):
@@ -237,13 +238,18 @@ class BasePage(object):
         return result
 
     def is_visibility(self, locator, timeout=10):
-        """元素可见返回本身，不可见返回Fasle"""
-        result = WebDriverWait(self.driver, timeout, 1).until(EC.visibility_of_element_located(locator))
-        return result
+        try:
+            """元素可见返回本身，不可见返回Fasle"""
+            result = WebDriverWait(self.driver, timeout, 1).until(
+                EC.visibility_of_element_located(locator))
+            return result
+        except TimeoutException as e:
+            logger.info(e)
 
     def is_invisibility(self, locator, timeout=10):
         """元素可见返回本身，不可见返回True，没找到元素也返回True"""
-        result = WebDriverWait(self.driver, timeout, 1).until(EC.visibility_of_element_located(locator))
+        result = WebDriverWait(self.driver, timeout, 1).until(
+            EC.visibility_of_element_located(locator))
         return result
 
     def is_clickable(self, locator, timeout=10):
@@ -253,7 +259,8 @@ class BasePage(object):
 
     def is_located(self, locator, timeout=10):
         """判断元素有没被定位到（并不意味着可见），定位到返回element,没定位到返回False"""
-        result = WebDriverWait(self.driver, timeout, 1).until(EC.presence_of_element_located(locator))
+        result = WebDriverWait(self.driver, timeout, 1).until(
+            EC.presence_of_element_located(locator))
         return result
 
     def set_element_wait(self, wait_time, locator):
@@ -271,7 +278,8 @@ class BasePage(object):
     def close_geo_popup(self):
         try:
             geo_location_close = (By.XPATH, '//div[@id="wrapper"]/div[7]/div[2]/a')
-            WebDriverWait(self.driver, 10, 1).until(EC.element_to_be_clickable(geo_location_close))
+            WebDriverWait(self.driver, 10, 1).until(
+                EC.element_to_be_clickable(geo_location_close))
             self.click(geo_location_close)
         except Exception as e:
             logger.error("Not found GEO pop-up. ---%s" % e)
@@ -312,7 +320,7 @@ class BasePage(object):
         finally:
             self.accept_next_alert = True
 
-    def get_attribute(self, locator):
+    def get_attribute_text(self, locator):
         try:
             text_content = self.find_element(*locator).get_attribute('textContent')
         except Exception as e:

@@ -1,4 +1,5 @@
 import unittest
+import time
 from util.BrowserDriver import BrowserDriver
 from pages.HomePage import HomePage
 from pages.sun_product import SunProduct
@@ -22,6 +23,10 @@ class TestPayment(unittest.TestCase):
         sunproduct = SunProduct(self.driver)
         sunproduct.click(sunproduct.buy_now)
         cart = Cart(self.driver)
+        cart.click(cart.promo_code_radio)
+        cart.send_key(cart.promo_code_input, "GIVEME10")
+        cart.click(cart.promo_code_button)
+        time.sleep(1)
         cart.click(cart.ingenico_checkout)
         checkout = Checkout(self.driver)
         checkout.click(checkout.MR)
@@ -46,7 +51,8 @@ class TestPayment(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.driver.quit()
+        # cls.driver.quit()
+        pass
 
 
 if __name__ == "__main__":

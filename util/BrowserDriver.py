@@ -22,13 +22,14 @@ class BrowserDriver(object):
     if system_name == 'Linux':
         firefox_driver_path = file_path + '/driver/linux/geckodriver'
         chrome_driver_path = file_path + '/driver/linux/chromedriver'
-
+        opera_driver_path = file_path + '/driver/linux/operadriver.exe'
     elif system_name == 'MacOS':
         firefox_driver_path = file_path + '/driver/MacOS/geckodriver'
         chrome_driver_path = file_path + '/driver/MacOS/chromedriver'
     elif system_name == 'Windows':
         firefox_driver_path = file_path + '/driver/Windows/geckodriver.exe'
         chrome_driver_path = file_path + '/driver/Windows/chromedriver.exe'
+        ie_driver_path = file_path + '/driver/Windows/IEDriverServer.exe'
 
     def __init__(self, driver):
         self.driver = driver
