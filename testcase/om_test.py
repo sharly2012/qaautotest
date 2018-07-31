@@ -1,5 +1,4 @@
 import unittest
-import time
 from util.BrowserDriver import BrowserDriver
 from pages.OMPage import OMPage
 

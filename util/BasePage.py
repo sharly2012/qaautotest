@@ -237,6 +237,16 @@ class BasePage(object):
         result = WebDriverWait(self.driver, timeout, 1).until(EC.alert_is_present())
         return result
 
+    def alert_accept(self):
+        try:
+            alert = self.driver.switch_to_alert()
+            logger.info(alert.text)
+            alert.accept()
+        except UnexpectedAlertPresentException as e:
+            print(e)
+        except NoAlertPresentException as e1:
+            print(e1)
+
     def is_visibility(self, locator, timeout=10):
         try:
             """元素可见返回本身，不可见返回Fasle"""
@@ -297,14 +307,6 @@ class BasePage(object):
             self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e:
             logger.error("Element is not present. %s" % e)
-            return False
-        return True
-
-    def is_alert_present(self):
-        try:
-            self.driver.switch_to.alert
-        except NoAlertPresentException as e:
-            logger.error("No Alert is present. %s" % e)
             return False
         return True
 

@@ -30,10 +30,12 @@ class OMPage(BasePage):
                 time.sleep(1)
                 try:
                     self.click(self.login_button)
-                    time.sleep(1)
+                    time.sleep(2)
+                    self.alert_accept()
                 except Exception as e:
                     print(e)
             else:
+                print("Had try %s times" % i)
                 print("Login successfully")
                 break
 
