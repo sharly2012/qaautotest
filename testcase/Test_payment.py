@@ -5,6 +5,7 @@ from pages.HomePage import HomePage
 from pages.sun_product import SunProduct
 from pages.cart import Cart
 from pages.checkout import Checkout
+from pages.OMPage import OMPage
 
 
 class TestPayment(unittest.TestCase):
@@ -25,7 +26,9 @@ class TestPayment(unittest.TestCase):
         sunproduct.click(sunproduct.buy_now)
         cart = Cart(self.driver)
         cart.click(cart.promo_code_radio)
-        cart.send_key(cart.promo_code_input, "GIVEME10")
+        om_page = OMPage(self.driver)
+        gift_voucher = om_page.create_voucher()
+        cart.send_key(cart.promo_code_input, gift_voucher)
         cart.click(cart.promo_code_button)
         time.sleep(1)
         cart.click(cart.ingenico_checkout)

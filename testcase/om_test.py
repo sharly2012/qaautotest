@@ -14,14 +14,14 @@ class OmTest(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_login(self):
-        om_page = OMPage(self.driver)
-        om_page.login()
-
-    # def test_voucher(self):
+    # def test_login(self):
     #     om_page = OMPage(self.driver)
-    #     voucher = om_page.create_voucher("100", "www.visiondirect.com.au")
-    #     print(voucher)
+    #     om_page.login()
+
+    def test_voucher(self):
+        om_page = OMPage(self.driver)
+        voucher = om_page.create_voucher("100", "www.visiondirect.com.au")
+        print(voucher)
 
     def tearDown(self):
         pass

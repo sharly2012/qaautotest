@@ -238,6 +238,7 @@ class BasePage(object):
         return result
 
     def alert_accept(self):
+        """接受alert"""
         try:
             alert = self.driver.switch_to_alert()
             logger.info(alert.text)
@@ -284,6 +285,15 @@ class BasePage(object):
         except Exception as e:
             logger.error("Failed to upload file %s" % e)
             self.get_screent_img()
+
+    def switch_handle(self, title_name):
+        """根据窗口title切换窗口"""
+        all_Handles = self.driver.window_handles()
+        for handle in all_Handles:
+            if self.driver.title.find(title_name) == -1:
+                self.driver.switch_to_window(handle)
+            else:
+                print("Can't find the handle")
 
     def close_geo_popup(self):
         try:
