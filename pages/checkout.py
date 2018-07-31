@@ -24,6 +24,17 @@ class Checkout(BasePage):
     cvv = (By.ID, "cvv")
     place_order = (By.ID, "btnSubmit")
 
+    def put_address(self):
+        self.send_key(self.billing_first_name, "Sharly")
+        self.send_key(self.billing_last_name, "Xing")
+        self.send_key(self.billing_email, "sharly.xing@motionglobal.com")
+        self.send_key(self.billing_telephone, "13517212112")
+        self.send_key(self.billing_address1, "North Zhongshao Road No.470")
+        self.send_key(self.billing_address2, "No.3 Tower 3F")
+        self.choose_us_status()
+        self.send_key(self.billing_city, "Shanghai")
+        self.send_key(self.billing_post_code, "AB 3451")
+
     def choose_us_status(self):
         self.click(self.billing_state)
         self.click(self.billing_state_option)

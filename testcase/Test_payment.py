@@ -18,6 +18,7 @@ class TestPayment(unittest.TestCase):
         pass
 
     def test_ingenico(self):
+        url = self.driver.current_url
         homepage = HomePage(self.driver)
         homepage.click(homepage.top_sellers_sun_1)
         sunproduct = SunProduct(self.driver)
@@ -30,15 +31,7 @@ class TestPayment(unittest.TestCase):
         cart.click(cart.ingenico_checkout)
         checkout = Checkout(self.driver)
         checkout.click(checkout.MR)
-        checkout.send_key(checkout.billing_first_name, "Sharly")
-        checkout.send_key(checkout.billing_last_name, "Xing")
-        checkout.send_key(checkout.billing_email, "sharly.xing@motionglobal.com")
-        checkout.send_key(checkout.billing_telephone, "13517212112")
-        checkout.send_key(checkout.billing_address1, "North Zhongshao Road No.470")
-        checkout.send_key(checkout.billing_address2, "No.3 Tower 3F")
-        checkout.choose_us_status()
-        checkout.send_key(checkout.billing_city, "Shanghai")
-        checkout.send_key(checkout.billing_post_code, "AB 3451")
+        checkout.put_address()
         checkout.click(checkout.proceed_payment)
         checkout.input_card()
         checkout.click(checkout.place_order)
