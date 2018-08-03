@@ -20,11 +20,18 @@
 
 > pip3 install pycparser
 
+> pip3 install pymysql
+
 > pip3 install configparser
 
 > pip3 install pytesseract
 
 > pip3 install Pillow
+
+> pip3 install cv2
+
+
+
 
 #### 支持的浏览器及驱动：
 基于Selenium支持的所有浏览器
