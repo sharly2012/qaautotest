@@ -13,7 +13,6 @@ from selenium.webdriver.common.by import By
 from util.logger import Logger
 from PIL import Image
 
-# create a logger instance
 logger = Logger(logger='BasePage').getlog()
 
 
@@ -37,11 +36,9 @@ class BasePage(object):
             return self.driver.find_element(*locator)
         except NoSuchElementException:
             logger.warning('Can not find element: %s' % locator[1])
-            # self.log.myloggger('Can not find element: %s' % locator[1], flag=2)
             raise
         except TimeoutException:
             logger.warning('Can not find element: %s' % locator[1])
-            # self.log.myloggger('Can not find element: %s' % locator[1], flag=2)
 
     def get_screent_img(self):
         """将页面截图下来"""

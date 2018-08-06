@@ -4,6 +4,10 @@ import os
 import sys
 import time
 import unittest
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
 sys.path.append(rootPath)
@@ -22,7 +26,6 @@ def create_suite():
 
     for test_case in discover:
         suites.addTests(test_case)
-        # print(test_case)
     return suites
 
 
@@ -34,6 +37,29 @@ def report():
         report_name = os.path.dirname(os.path.abspath('.')) + '/report/' + now + 'result.html'
         # report_name = os.path.dirname(os.path.abspath('.')) + '/report/' + 'result.html'
     return report_name
+
+
+def send_mail(sender, psw, receiver, smtpserver, report_file):
+    with open(report_file, "rb") as f:
+        mail_body = f.read()
+    # 定丿邮件内容
+    msg = MIMEMultipart()
+    body = MIMEText(mail_body, _subtype='html', _charset='utf-8')
+    msg['Subject'] = u"自劢化测试报告"
+    msg["from"] = sender
+    msg["to"] = psw
+    msg["date"] = time.strftime('%a, %d %b %Y %H_%M_%S %z')
+    msg.attach(body)
+    # 添加附件
+    att = MIMEText(open(report_file, "rb").read(), "base64", "utf-8")
+    att["Content-Type"] = "application/octet-stream"
+    att["Content-Disposition"] = 'attachment; filename= "report.html"'
+    msg.attach(att)
+    smtp = smtplib.SMTP()
+    smtp.connect(smtpserver)
+    smtp.login(sender, psw)
+    smtp.sendmail(sender, receiver, msg.as_string())
+    smtp.quit()
 
 
 if __name__ == '__main__':
