@@ -6,10 +6,10 @@ from util.BasePage import BasePage
 
 
 class HomePage(BasePage):
-    geo_location = (By.CLASS_NAME, "geo-cnt")
-    geo_location_close = (By.XPATH, '//div[@id="wrapper"]/div[7]/div[2]/a')
-    newsletter_popup = (By.CLASS_NAME, "EDM-popUp-box")
-    newsletter_popup_close = (By.CSS_SELECTOR, 'EDM-popUp > div.EDM-popUp-box > div > a.EDM-popUp-close.close_btn')
+    geo_cnt = (By.CLASS_NAME, 'geo-cnt')
+    geo_close_btn = (By.CLASS_NAME, 'geo-close-btn')
+    EDM_popUp_cnt = (By.CLASS_NAME, "EDM-popUp-cnt")
+    EDM_popUp_close_btn = (By.CLASS_NAME, "EDM-popUp-close close_btn")
     login_text = (By.XPATH, "//li[@id='signin_li']/a/span")
     login_button = (By.XPATH, "//li[@id='signin_li']/div/div/span/a")
     username = (By.ID, 'username')
