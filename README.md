@@ -20,7 +20,7 @@
 
 > pip3 install pycparser
 
-> pip3 install pymysql
+> pip3 install PyMySQL
 
 > pip3 install configparser
 
@@ -28,7 +28,7 @@
 
 > pip3 install Pillow
 
-> pip3 install cv2
+> pip3 install opencv-python
 
 
 
