@@ -4,6 +4,8 @@ import pytesseract
 import os
 import time
 import cv2
+import configparser
+import yaml
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import *
@@ -515,3 +517,19 @@ class BasePage(object):
         verify_code = pytesseract.image_to_string(img).strip()
         logger.info("verify code is: " + verify_code)
         return verify_code
+
+    def get_config_value(self, section, key):
+        config_path = self.path + "/conf/config.ini"
+        config = configparser.ConfigParser()
+        config.read(config_path)
+        value = config.get(section, key)
+        return value
+
+    def get_yaml_value(self, option, key):
+        yaml_path = self.path + "/yaml/browser.yaml"
+        with open(yaml_path, 'r') as f:
+            temp = yaml.load(f.read())
+        value = temp[option][key]
+        return value
+
+

@@ -1,10 +1,12 @@
 import time
+import os
 import configparser
 from util.BasePage import BasePage
 from selenium.webdriver.common.by import By
 
+path = os.path.dirname(os.getcwd())
 config = configparser.ConfigParser()
-config.read("/Users/admin/PycharmProjects/sbg2018/sbg/config/config.ini")
+config.read(path + "/conf/config.ini")
 usr = config.get("OMAccount", "username")
 pwd = config.get("OMAccount", "password")
 

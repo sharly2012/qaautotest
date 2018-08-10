@@ -20,9 +20,11 @@ class TestLogin(unittest.TestCase):
         homepage.move_to_element(homepage.login_text)
         homepage.click(homepage.login_button)
         homepage.clear(homepage.username)
-        homepage.send_key(homepage.username, 'sharly.xing@motionglobal.com')
+        email = homepage.get_config_value("SBG_Account", "email")
+        pwd = homepage.get_config_value("SBG_Account", "password")
+        homepage.send_key(homepage.username, email)
         homepage.clear(homepage.password)
-        homepage.send_key(homepage.password, '1qaz@WSX')
+        homepage.send_key(homepage.password, pwd)
         homepage.click(homepage.sign_in_button)
         
     def tearDown(self):
