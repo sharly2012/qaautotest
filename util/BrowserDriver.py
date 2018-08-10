@@ -26,6 +26,7 @@ class BrowserDriver(object):
     elif system_name == 'MacOS':
         firefox_driver_path = file_path + '/driver/MacOS/geckodriver'
         chrome_driver_path = file_path + '/driver/MacOS/chromedriver'
+        opera_driver_path = file_path + '/driver/MacOS/operadriver'
     elif system_name == 'Windows':
         firefox_driver_path = file_path + '/driver/Windows/geckodriver.exe'
         chrome_driver_path = file_path + '/driver/Windows/chromedriver.exe'
@@ -36,7 +37,7 @@ class BrowserDriver(object):
 
     def open_browser(self, driver):
         if self.browser == "Firefox":
-            driver = webdriver.Firefox()
+            driver = webdriver.Firefox(log_path=self.file_path + "/logs/" + "geckodriver.log")
             logger.info("启动火狐浏览器")
         elif self.browser == "Chrome":
             driver = webdriver.Chrome(self.chrome_driver_path)

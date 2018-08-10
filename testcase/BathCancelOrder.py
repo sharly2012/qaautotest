@@ -104,9 +104,8 @@ def bath_cancel_order(excel_path, sheet_name):
             print(order_code + ' :' + 'cancel successfully')
 
 
-login()
-bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
-bath_cancel_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
-# cancel_order("MY0279939521GV")
-
-driver.quit()
+if __name__ == '__main__':
+    login()
+    bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
+    bath_cancel_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
+    driver.quit()

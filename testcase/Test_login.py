@@ -15,6 +15,8 @@ class TestLogin(unittest.TestCase):
 
     def test_login(self):
         homepage = HomePage(self.driver)
+        homepage.close_geo_popup()
+        homepage.close_newsletter_popup()
         homepage.move_to_element(homepage.login_text)
         homepage.click(homepage.login_button)
         homepage.clear(homepage.username)

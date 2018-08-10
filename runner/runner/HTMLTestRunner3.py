@@ -523,6 +523,7 @@ class _TestResult(TestResult):
 
     def __init__(self, verbosity=1):
         TestResult.__init__(self)
+        self.outputBuffer = None
         self.stdout0 = None
         self.stderr0 = None
         self.success_count = 0

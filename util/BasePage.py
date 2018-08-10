@@ -185,7 +185,7 @@ class BasePage(object):
             result = WebDriverWait(self.driver, timeout, 1).until(
                 EC.text_to_be_present_in_element(locator, text))
         except TimeoutException:
-            print("元素没有定位到:" + str(locator))
+            logger.info("元素没有定位到:" + str(locator))
             return False
         else:
             return result
@@ -196,7 +196,7 @@ class BasePage(object):
         result = driver.text_in_element(element, text)
         """
         try:
-            result = WebDriverWait(self.driver, timeout, 1).until(
+            result = WebDriverWait(self.driver, timeout, 0.5).until(
                 EC.text_to_be_present_in_element_value(locator, value))
         except TimeoutException:
             print("元素没定位到：" + str(locator))
@@ -206,24 +206,24 @@ class BasePage(object):
 
     def is_title(self, title, timeout=10):
         """判断title完全等于"""
-        result = WebDriverWait(self.driver, timeout, 1).until(EC.title_is(title))
+        result = WebDriverWait(self.driver, timeout, 0.5).until(EC.title_is(title))
         return result
 
     def is_title_contains(self, title, timeout=10):
         """判断title包含"""
-        result = WebDriverWait(self.driver, timeout, 1).until(EC.title_contains(title))
+        result = WebDriverWait(self.driver, timeout, 0.5).until(EC.title_contains(title))
         return result
 
     def is_selected(self, locator, timeout=10):
         """判断元素被选中，返回布尔值,"""
-        result = WebDriverWait(self.driver, timeout, 1).until(
+        result = WebDriverWait(self.driver, timeout, 0.5).until(
             EC.element_located_to_be_selected(locator))
         return result
 
     def is_selected_be(self, locator, selected=True, timeout=10):
         """判断元素的状态，selected是期望的参数true/False
         返回布尔值"""
-        result = WebDriverWait(self.driver, timeout, 1).until(
+        result = WebDriverWait(self.driver, timeout, 0.5).until(
             EC.element_located_selection_state_to_be(locator, selected))
         return result
 
@@ -231,7 +231,7 @@ class BasePage(object):
         """判断页面是否有alert，
         有返回alert(注意这里是返回alert,不是True)
         没有返回False"""
-        result = WebDriverWait(self.driver, timeout, 1).until(EC.alert_is_present())
+        result = WebDriverWait(self.driver, timeout, 0.5).until(EC.alert_is_present())
         return result
 
     def alert_accept(self):
@@ -248,7 +248,7 @@ class BasePage(object):
     def is_visibility(self, locator, timeout=10):
         try:
             """元素可见返回本身，不可见返回Fasle"""
-            result = WebDriverWait(self.driver, timeout, 1).until(
+            result = WebDriverWait(self.driver, timeout, 0.5).until(
                 EC.visibility_of_element_located(locator))
             return result
         except TimeoutException as e:
@@ -256,23 +256,23 @@ class BasePage(object):
 
     def is_invisibility(self, locator, timeout=10):
         """元素可见返回本身，不可见返回True，没找到元素也返回True"""
-        result = WebDriverWait(self.driver, timeout, 1).until(
+        result = WebDriverWait(self.driver, timeout, 0.5).until(
             EC.visibility_of_element_located(locator))
         return result
 
     def is_clickable(self, locator, timeout=10):
         """元素可以点击is_enabled返回本身，不可点击返回Fasle"""
-        result = WebDriverWait(self.driver, timeout, 1).until(EC.element_to_be_clickable(locator))
+        result = WebDriverWait(self.driver, timeout, 0.5).until(EC.element_to_be_clickable(locator))
         return result
 
     def is_located(self, locator, timeout=10):
         """判断元素有没被定位到（并不意味着可见），定位到返回element,没定位到返回False"""
-        result = WebDriverWait(self.driver, timeout, 1).until(
+        result = WebDriverWait(self.driver, timeout, 0.5).until(
             EC.presence_of_element_located(locator))
         return result
 
     def set_element_wait(self, wait_time, locator):
-        WebDriverWait(self.driver, wait_time, 1).until(EC.presence_of_element_located(locator))
+        WebDriverWait(self.driver, wait_time, 0.5).until(EC.presence_of_element_located(locator))
 
     def upload_file(self, locator, file_path):
         """上传文件"""
@@ -295,7 +295,7 @@ class BasePage(object):
     def close_geo_popup(self):
         try:
             geo_location_close = (By.XPATH, '//div[@id="wrapper"]/div[7]/div[2]/a')
-            WebDriverWait(self.driver, 10, 1).until(
+            WebDriverWait(self.driver, 10, 0.5).until(
                 EC.element_to_be_clickable(geo_location_close))
             self.click(geo_location_close)
         except Exception as e:

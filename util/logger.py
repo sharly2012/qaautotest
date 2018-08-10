@@ -17,7 +17,7 @@ class Logger(object):
         self.logger.setLevel(logging.DEBUG)
 
         # 创建一个handle，用来写入日志文件
-        now = time.strftime("%Y-%m-%d_%H_%M_%S_")
+        now = time.strftime("%Y-%m-%d_%H_%M_%S")
         log_path = os.path.dirname(os.path.abspath('.')) + '/logs/'
         log_name = log_path + now + '.log'
 

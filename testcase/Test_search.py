@@ -22,6 +22,7 @@ class TestSearch(unittest.TestCase):
         homepage.send_key(homepage.search_box, 'Ray Ban')
         homepage.click(homepage.search_button)
 
+
     def tearDown(self):
         pass
 

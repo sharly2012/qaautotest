@@ -31,14 +31,14 @@ class HomePage(BasePage):
 
     def close_geo_popup(self):
         try:
-            if self.is_visibility(self.geo_location):
-                self.click(self.geo_location_close)
+            if self.is_visibility(self.geo_cnt):
+                self.click(self.geo_close_btn)
         except NoSuchElementException as e:
             self.logger.error("Not found GEO pop-up. ---%s" % e)
 
     def close_newsletter_popup(self):
         try:
-            if self.is_visibility(self.newsletter_popup):
-                self.click(self.newsletter_popup_close)
+            if self.is_visibility(self.EDM_popUp_cnt):
+                self.click(self.EDM_popUp_close_btn)
         except NoSuchElementException as e:
             self.logger.error("Not found newsletter pop-up. ---%s" % e)
