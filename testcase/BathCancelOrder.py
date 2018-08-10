@@ -1,20 +1,16 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import openpyxl
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
-import openpyxl
-import configparser
+from pages.OMPage import OMPage
 
-config = configparser.ConfigParser()
-config.read("/Users/admin/PycharmProjects/sbg2018/sbg/config/config.ini")
-# url = config.get("OMUrl", "url")
+
 url = 'http://om.motionglobal.com'
-usr = config.get("OMAccount", "username")
-pwd = config.get("OMAccount", "password")
 driver = webdriver.Firefox()
 driver.implicitly_wait(10)
 driver.maximize_window()
@@ -24,15 +20,8 @@ action = ActionChains(driver)
 
 
 def login():
-    username = driver.find_element_by_id('username')
-    password = driver.find_element_by_id('password')
-    login_button = driver.find_element_by_id('sub')
-    username.clear()
-    username.send_keys(usr)
-    password.clear()
-    password.send_keys(pwd)
-    sleep(10)
-    login_button.click()
+    om_page = OMPage(driver)
+    om_page.login()
 
 
 def transfer_order(order_code):

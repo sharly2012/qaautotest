@@ -1,14 +1,6 @@
 import time
-import os
-import configparser
 from util.BasePage import BasePage
 from selenium.webdriver.common.by import By
-
-path = os.path.dirname(os.getcwd())
-config = configparser.ConfigParser()
-config.read(path + "/conf/config.ini")
-usr = config.get("OMAccount", "username")
-pwd = config.get("OMAccount", "password")
 
 
 class OMPage(BasePage):
@@ -22,6 +14,8 @@ class OMPage(BasePage):
     def login(self):
         for i in range(10):
             if self.driver.current_url != "http://om.motionglobal.com/index/dashboard":
+                usr = self.get_config_value("OM_Account", "username")
+                pwd = self.get_config_value("OM_Account", "password")
                 self.clear(self.username)
                 self.send_key(self.username, usr)
                 self.clear(self.password)
