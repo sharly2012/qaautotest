@@ -1,4 +1,5 @@
 ##ignore this file##
+*.pyc
 /conf/config.ini
 /logs/*.log
 /.idea/
