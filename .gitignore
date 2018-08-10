@@ -1,6 +1,6 @@
 ##ignore this file##
 /conf/config.ini
-/logs/
+/logs/*.log
 /.idea/
 /report/result.html
 /TestCase/geckodriver.log
@@ -12,4 +12,5 @@
 /report/runner/__pycache__/__init__.cpython-36.pyc
 /util/__pycache__/
 /report/runner/__pycache__/HTMLTestRunner3.cpython-36.pyc
-/screenshots/
+/screenshots/*.png
+/screenshots/*.jpg
