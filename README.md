@@ -30,7 +30,11 @@
 
 > pip3 install opencv-python
 
+####
+Build 之前需要新建2个文件夹
 
+screenshots 用于存放case失败截图
+logs 用于存放log
 
 
 #### 支持的浏览器及驱动：
