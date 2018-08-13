@@ -7,8 +7,8 @@ class TestLogin(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        driver = BrowserDriver(cls)
-        cls.driver = driver.open_browser(cls)
+        browser_driver = BrowserDriver(cls)
+        cls.driver = browser_driver.open_browser(cls)
 
     def setUp(self):
         pass
@@ -26,7 +26,13 @@ class TestLogin(unittest.TestCase):
         homepage.clear(homepage.password)
         homepage.send_key(homepage.password, pwd)
         homepage.click(homepage.sign_in_button)
-        
+        homepage.move_to_element(homepage.your_account)
+        try:
+            self.assertIn("sharly", homepage.get_attribute_text(homepage.user_detail))
+            print("Login in success")
+        except Exception as e:
+            print("Login in fail: ", format(e))
+
     def tearDown(self):
         pass
 

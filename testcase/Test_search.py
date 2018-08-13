@@ -21,6 +21,12 @@ class TestSearch(unittest.TestCase):
         homepage.close_newsletter_popup()
         homepage.send_key(homepage.search_box, 'Ray Ban')
         homepage.click(homepage.search_button)
+        try:
+            self.assertIn("Ray Ban", homepage.get_attribute_text(homepage.search_result))
+            print("result view correct")
+        except Exception as e:
+            print("search result is not correct:", format(e))
+            homepage.get_screent_img()
 
     def tearDown(self):
         pass

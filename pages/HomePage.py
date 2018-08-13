@@ -28,6 +28,10 @@ class HomePage(BasePage):
     By.CSS_SELECTOR, "# menuN_level_1 > li > div > div.shop_by_left > ul:nth-child(2) > li:nth-child(2) > a")
     top_sellers_sun_1 = (By.XPATH, "//ul[@id='pro_slider_sunglasses']/li/a")
     top_sellers_eye_1 = (By.XPATH, "//ul[@id='pro_slider_eyeglasses']/li/a")
+    your_account = (By.XPATH, "//li[@id='signin_li_already']/a")
+    user_detail = (By.XPATH, "//li[@id='signin_li_already']/div/div/p[1]")
+    search_pop_1 = (By.XPATH, "//from[@id='search']/div/div[1]/div/div[1]/div/div[2]/a/div[1]")
+    search_result = (By.XPATH, "//div[@id='content']/div[2]/div[3]/div[2]/div[1]/div[1]/ul/li[3]/a[2]/div[1]/p")
 
     def close_geo_popup(self):
         try:

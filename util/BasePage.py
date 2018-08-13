@@ -26,6 +26,7 @@ class BasePage(object):
         :param driver:打开浏览器驱动
         """
         self.driver = driver
+        self.accept_next_alert = True
 
     def get_page_title(self):
         logger.info("当前页面的title为: %s" % self.driver.title)
