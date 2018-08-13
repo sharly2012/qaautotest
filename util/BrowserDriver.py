@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-import os.path
+import yaml
 from selenium import webdriver
 from util.logger import Logger
-import yaml
+from util.config import GlobalVar
 
-logger = Logger(logger="BrowserDriver").getlog()
+
+logger = Logger(logger="BrowserDriver").get_log()
 
 
 class BrowserDriver(object):
-    file_path = os.path.dirname(os.getcwd())
+    # file_path = os.path.dirname(os.path.abspath('.'))
+    file_path = GlobalVar.get_root_path()
     name_path = file_path + '/yaml/browser.yaml'
     with open(name_path, 'r') as f:
         temp = yaml.load(f.read())

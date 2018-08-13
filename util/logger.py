@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import logging
-import os.path
 import time
+from util.config import GlobalVar
 
 
 class Logger(object):
@@ -18,24 +18,25 @@ class Logger(object):
 
         # 创建一个handle，用来写入日志文件
         now = time.strftime("%Y-%m-%d_%H_%M_%S")
-        log_path = os.path.dirname(os.path.abspath('.')) + '/logs/'
+        # log_path = os.path.dirname(os.path.abspath('.')) + '/logs/'
+        log_path = GlobalVar.get_root_path() + '/logs/'
         log_name = log_path + now + '.log'
 
-        filehandle = logging.FileHandler(log_name, encoding="utf-8")
-        filehandle.setLevel(logging.INFO)
+        file_handle = logging.FileHandler(log_name, encoding="utf-8")
+        file_handle.setLevel(logging.INFO)
 
         # 创建一个handle，用来输入日志到控制台
-        controlhandle = logging.StreamHandler()
-        controlhandle.setLevel(logging.INFO)
+        control_handle = logging.StreamHandler()
+        control_handle.setLevel(logging.INFO)
 
         # 将输出的hangdle格式进行转换
         formatter = logging.Formatter('%(asctime)s  - %(levelname)s - %(message)s')
-        filehandle.setFormatter(formatter)
-        controlhandle.setFormatter(formatter)
+        file_handle.setFormatter(formatter)
+        control_handle.setFormatter(formatter)
 
         # 给logger添加handle
-        self.logger.addHandler(filehandle)
-        self.logger.addHandler(controlhandle)
+        self.logger.addHandler(file_handle)
+        self.logger.addHandler(control_handle)
 
-    def getlog(self):
+    def get_log(self):
         return self.logger

@@ -7,7 +7,7 @@ import openpyxl
 from util.BasePage import BasePage
 from util.logger import Logger
 
-logger = Logger(logger="DesktopHomepageTest").getlog()
+logger = Logger(logger="DesktopHomepageTest").get_log()
 
 
 class DesktopHomepageTest(unittest.TestCase):

@@ -4,8 +4,9 @@ from PIL import Image
 from pytesseract import *
 from fnmatch import fnmatch
 from queue import Queue
+from util.config import GlobalVar
 
-path = os.path.dirname(os.getcwd())
+path = GlobalVar.get_root_path()
 
 
 def clear_border(img, img_name):

@@ -1,13 +1,13 @@
 #!/usr/bin/python
 # -*- coding: <utf-8> -*-
-import os
-from util.ChromeMobile import MobileDriver
 import unittest
 import openpyxl
-from util.logger import Logger
 from util.BasePage import BasePage
+from util.ChromeMobile import MobileDriver
+from util.config import GlobalVar
+from util.logger import Logger
 
-logger = Logger(logger="MobileHomepageTest").getlog()
+logger = Logger(logger='MobileHomepageTest').get_log()
 
 
 class MobileHomepageTest(unittest.TestCase):
@@ -21,7 +21,8 @@ class MobileHomepageTest(unittest.TestCase):
         pass
 
     def test_homepage(self):
-        file_path = os.path.dirname(os.path.abspath('.'))
+        # file_path = os.path.dirname(os.path.abspath('.'))
+        file_path = GlobalVar.get_root_path()
         excel_path = file_path + "/files/website.xlsx"
         sheet_name = "Sheet1"
         wb = openpyxl.load_workbook(excel_path)

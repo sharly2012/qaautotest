@@ -15,3 +15,4 @@
 /report/runner/__pycache__/HTMLTestRunner3.cpython-36.pyc
 /screenshots/*.png
 /screenshots/*.jpg
+/runner/runner/__pycache__/

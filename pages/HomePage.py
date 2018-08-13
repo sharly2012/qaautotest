@@ -18,6 +18,7 @@ class HomePage(BasePage):
     search_box = (By.ID, 'search_input')
     search_button = (By.ID, 'search_button')
     menu_sunglasses = (By.CSS_SELECTOR, '#menuN_1 > a')
+    sun_man = (By.XPATH, "//ul[@id='menuN_level_1']/li/div/div[1]/ul[1]/li[1]/a")
     menu_glasses = (By.CSS_SELECTOR, "#menuN_2 > a")
     menu_cl = (By.CSS_SELECTOR, "#menuN_5 > a")
     menu_explore = (By.CSS_SELECTOR, "#menuN_6 > a")

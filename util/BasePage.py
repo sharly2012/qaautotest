@@ -11,11 +11,10 @@ from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
 from util.logger import Logger
 from PIL import Image
 
-logger = Logger(logger='BasePage').getlog()
+logger = Logger(logger='BasePage').get_log()
 
 
 class BasePage(object):
@@ -288,29 +287,12 @@ class BasePage(object):
 
     def switch_handle(self, title_name):
         """根据窗口title切换窗口"""
-        all_Handles = self.driver.window_handles()
-        for handle in all_Handles:
+        all_handles = self.driver.window_handles()
+        for handle in all_handles:
             if self.driver.title.find(title_name) == -1:
                 self.driver.switch_to_window(handle)
             else:
                 print("Can't find the handle")
-
-    def close_geo_popup(self):
-        try:
-            geo_location_close = (By.XPATH, '//div[@id="wrapper"]/div[7]/div[2]/a')
-            WebDriverWait(self.driver, 10, 0.5).until(
-                EC.element_to_be_clickable(geo_location_close))
-            self.click(geo_location_close)
-        except Exception as e:
-            logger.error("Not found GEO pop-up. ---%s" % e)
-
-    def close_newsletter_popup(self):
-        try:
-            newsletter_popup_close = (By.CSS_SELECTOR,
-                                      'EDM-popUp > div.EDM-popUp-box > div > a.EDM-popUp-close.close_btn')
-            self.click(newsletter_popup_close)
-        except Exception as e:
-            logger.error("Not found newsletter pop-up. ---%s" % e)
 
     def is_element_present(self, how, what):
         try:
