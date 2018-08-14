@@ -12,12 +12,12 @@ curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
 sys.path.append(rootPath)
 from runner.runner.HTMLTestRunner3 import HTMLTestRunner
-from util.config import GlobalVar
+from util.BaseUtil import BaseUtil
 
 
 def create_suite():
     suites = unittest.TestSuite()  # 测试集
-    test_dir = GlobalVar.get_root_path() + '/testcase/'
+    test_dir = BaseUtil.get_root_path() + '/testcase/'
 
     discover = unittest.defaultTestLoader.discover(
         start_dir=test_dir,
@@ -32,10 +32,10 @@ def create_suite():
 
 def report():
     if len(sys.argv) > 1:
-        report_name = GlobalVar.get_root_path() + '/report/' + sys.argv[1] + '_result.html'
+        report_name = BaseUtil.get_root_path() + '/report/' + sys.argv[1] + '_result.html'
     else:
         now = time.strftime("%Y-%m-%d_%H_%M_%S_")
-        report_name = GlobalVar.get_root_path() + '/report/' + now + 'result.html'
+        report_name = BaseUtil.get_root_path() + '/report/' + now + 'result.html'
         # report_name = GlobalVar.get_root_path() + '/report/' + 'result.html'
     return report_name
 

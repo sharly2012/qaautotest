@@ -4,13 +4,13 @@ import os.path
 from selenium import webdriver
 import yaml
 from util.logger import Logger
-from util.config import GlobalVar
+from util.BaseUtil import BaseUtil
 
 logger = Logger(logger="Chrome_mobile").get_log()
 
 
 class MobileDriver(object):
-    file_path = GlobalVar.get_root_path()
+    file_path = BaseUtil.get_root_path()
     name_path = file_path + '/yaml/browser.yaml'
     with open(name_path, 'r') as f:
         temp = yaml.load(f.read())

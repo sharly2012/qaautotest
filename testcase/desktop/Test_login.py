@@ -1,6 +1,9 @@
 import unittest
 from util.BrowserDriver import BrowserDriver
 from pages.HomePage import HomePage
+from util.logger import Logger
+
+logger = Logger(logger='TestLogin').get_log()
 
 
 class TestLogin(unittest.TestCase):
@@ -29,9 +32,11 @@ class TestLogin(unittest.TestCase):
         homepage.move_to_element(homepage.your_account)
         try:
             self.assertIn("sharly", homepage.get_attribute_text(homepage.user_detail))
-            print("Login in success")
+            logger.info("*************************************************************")
+            logger.info("Login in success")
         except Exception as e:
-            print("Login in fail: ", format(e))
+            logger.info("*************************************************************")
+            logger.info("Login in fail: ", format(e))
 
     def tearDown(self):
         pass

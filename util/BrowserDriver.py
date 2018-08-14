@@ -3,7 +3,7 @@
 import yaml
 from selenium import webdriver
 from util.logger import Logger
-from util.config import GlobalVar
+from util.BaseUtil import BaseUtil
 
 
 logger = Logger(logger="BrowserDriver").get_log()
@@ -11,7 +11,7 @@ logger = Logger(logger="BrowserDriver").get_log()
 
 class BrowserDriver(object):
     # file_path = os.path.dirname(os.path.abspath('.'))
-    file_path = GlobalVar.get_root_path()
+    file_path = BaseUtil.get_root_path()
     name_path = file_path + '/yaml/browser.yaml'
     with open(name_path, 'r') as f:
         temp = yaml.load(f.read())
@@ -20,12 +20,12 @@ class BrowserDriver(object):
     browser = temp['browserType']['browserName']
     logger.info("选择的浏览器为: %s 浏览器" % browser)
     url = temp['WebUrl']['URL']
-    logger.info("打开的URL为: %s" % url)
     if system_name == 'Linux':
         firefox_driver_path = file_path + '/driver/linux/geckodriver'
         chrome_driver_path = file_path + '/driver/linux/chromedriver'
         opera_driver_path = file_path + '/driver/linux/operadriver.exe'
     elif system_name == 'MacOS':
+        safari_driver_path = file_path + '/driver/MacOS/safaridriver'
         firefox_driver_path = file_path + '/driver/MacOS/geckodriver'
         chrome_driver_path = file_path + '/driver/MacOS/chromedriver'
         opera_driver_path = file_path + '/driver/MacOS/operadriver'
@@ -33,6 +33,7 @@ class BrowserDriver(object):
         firefox_driver_path = file_path + '/driver/Windows/geckodriver.exe'
         chrome_driver_path = file_path + '/driver/Windows/chromedriver.exe'
         ie_driver_path = file_path + '/driver/Windows/IEDriverServer.exe'
+        edge_driver_path = file_path + '/driver/Windows/IEDriverServer.exe'
 
     def __init__(self, driver):
         self.driver = driver
@@ -45,7 +46,7 @@ class BrowserDriver(object):
             driver = webdriver.Chrome(self.chrome_driver_path)
             logger.info("启动谷歌浏览器")
         elif self.browser == "IE":
-            driver = webdriver.IE(self.ie_driver_path)
+            driver = webdriver.Ie(self.ie_driver_path)
             logger.info("启动IE浏览器")
         elif self.browser == "Edge":
             driver = webdriver.Edge(self.edge_driver_path)

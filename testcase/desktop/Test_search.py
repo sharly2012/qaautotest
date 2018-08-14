@@ -3,6 +3,9 @@
 import unittest
 from util.BrowserDriver import BrowserDriver
 from pages.HomePage import HomePage
+from util.logger import Logger
+
+logger = Logger(logger='TestLogin').get_log()
 
 
 class TestSearch(unittest.TestCase):
@@ -23,9 +26,11 @@ class TestSearch(unittest.TestCase):
         homepage.click(homepage.search_button)
         try:
             self.assertIn("Ray Ban", homepage.get_attribute_text(homepage.search_result))
-            print("result view correct")
+            logger.info("*************************************************************")
+            logger.info("result view correct")
         except Exception as e:
-            print("search result is not correct:", format(e))
+            logger.info("*************************************************************")
+            logger.info("search result is not correct:", format(e))
             homepage.get_screent_img()
 
     def tearDown(self):

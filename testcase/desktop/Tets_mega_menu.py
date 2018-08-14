@@ -1,6 +1,9 @@
 import unittest
 from pages.HomePage import HomePage
 from util.BrowserDriver import BrowserDriver
+from util.logger import Logger
+
+logger = Logger(logger="TestMegaMenu").get_log()
 
 
 class TestMegaMenu(unittest.TestCase):
@@ -21,9 +24,12 @@ class TestMegaMenu(unittest.TestCase):
         homepage.click(homepage.sun_man)
         try:
             self.assertIn("Men's Sunglasses", self.driver.title)
-            print("url is correct")
+            logger.info("*************************************************************")
+            logger.info("url is correct")
         except Exception as e:
-            print("url is not correct:", format(e))
+            logger.info("*************************************************************")
+            logger.info("url is not correct:", format(e))
+            homepage.get_screent_img()
 
     def tearDown(self):
         pass

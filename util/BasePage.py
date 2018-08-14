@@ -13,12 +13,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from util.logger import Logger
 from PIL import Image
+from util.BaseUtil import BaseUtil
 
 logger = Logger(logger='BasePage').get_log()
 
 
 class BasePage(object):
-    path = os.path.dirname(os.getcwd())
+    path = BaseUtil.get_root_path()
 
     def __init__(self, driver):
         """

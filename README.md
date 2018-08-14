@@ -1,15 +1,21 @@
 ----------------------------------------------------------
 #### 关于框架：
-框架基于Python3+Selenium3+Unittest搭建的WebUI自动化测试框架
+
+本框架基于Python3+Selenium+Unittest搭建的WebUI自动化测试框架
 
 #### 特点：
-- 支持多种定位方式，包括（xpath/css/ID/text/link_text/name）
+
 - 框架集成了Selenium的常用定位方法，使元素定位更加方便
+- 使用PageObject，维护更加方便
 - 使用HTMLTestRunner作为自动生成测试报告，报告更加美观，更加详细，内容更丰富
 - Logging日志输出，可以看到每一步做的操作
+- 失败会截图保存到screenshots目录下，更方便查找问题
+
 
 #### 部署环境：
 - Python 3
+- pip3
+
 #### 使用到的package：
 
 > pip3 install selenium
@@ -31,10 +37,7 @@
 > pip3 install opencv-python
 
 ####
-Build 之前需要新建2个文件夹
-
-screenshots 用于存放case失败截图
-logs 用于存放log
+修改/util/BaseUtil.py中root_path路径为当前项目的主目录
 
 
 #### 支持的浏览器及驱动：
