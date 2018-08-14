@@ -502,18 +502,5 @@ class BasePage(object):
         logger.info("verify code is: " + verify_code)
         return verify_code
 
-    def get_config_value(self, section, key):
-        config_path = self.path + "/conf/config.ini"
-        config = configparser.ConfigParser()
-        config.read(config_path)
-        value = config.get(section, key)
-        return value
-
-    def get_yaml_value(self, option, key):
-        yaml_path = self.path + "/yaml/browser.yaml"
-        with open(yaml_path, 'r') as f:
-            temp = yaml.load(f.read())
-        value = temp[option][key]
-        return value
 
 
