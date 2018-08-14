@@ -6,7 +6,7 @@ from fnmatch import fnmatch
 from queue import Queue
 from util.BaseUtil import BaseUtil
 
-path = BaseUtil.get_root_path()
+path = BaseUtil().get_root_path()
 
 
 def clear_border(img, img_name):

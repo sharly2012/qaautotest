@@ -11,7 +11,7 @@ logger = Logger(logger="BrowserDriver").get_log()
 
 class BrowserDriver(object):
     # file_path = os.path.dirname(os.path.abspath('.'))
-    file_path = BaseUtil.get_root_path()
+    file_path = BaseUtil().get_root_path()
     name_path = file_path + '/yaml/browser.yaml'
     with open(name_path, 'r') as f:
         temp = yaml.load(f.read())

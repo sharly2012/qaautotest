@@ -19,7 +19,7 @@ logger = Logger(logger='BasePage').get_log()
 
 
 class BasePage(object):
-    path = BaseUtil.get_root_path()
+    path = BaseUtil().get_root_path()
 
     def __init__(self, driver):
         """

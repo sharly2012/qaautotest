@@ -22,7 +22,7 @@ class MobileHomepageTest(unittest.TestCase):
 
     def test_homepage(self):
         # file_path = os.path.dirname(os.path.abspath('.'))
-        file_path = BaseUtil.get_root_path()
+        file_path = BaseUtil().get_root_path()
         excel_path = file_path + "/files/website.xlsx"
         sheet_name = "Sheet1"
         wb = openpyxl.load_workbook(excel_path)
