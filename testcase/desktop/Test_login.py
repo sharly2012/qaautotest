@@ -2,6 +2,7 @@ import unittest
 from util.BrowserDriver import BrowserDriver
 from pages.HomePage import HomePage
 from util.logger import Logger
+from util.BaseUtil import BaseUtil
 
 logger = Logger(logger='TestLogin').get_log()
 
@@ -23,8 +24,8 @@ class TestLogin(unittest.TestCase):
         homepage.move_to_element(homepage.login_text)
         homepage.click(homepage.login_button)
         homepage.clear(homepage.username)
-        email = homepage.get_config_value("SBG_Account", "email")
-        pwd = homepage.get_config_value("SBG_Account", "password")
+        email = BaseUtil().get_config_value("SBG_Account", "email")
+        pwd = BaseUtil().get_config_value("SBG_Account", "password")
         homepage.send_key(homepage.username, email)
         homepage.clear(homepage.password)
         homepage.send_key(homepage.password, pwd)

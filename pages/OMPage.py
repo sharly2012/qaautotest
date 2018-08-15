@@ -1,6 +1,7 @@
 import time
 from util.BasePage import BasePage
 from selenium.webdriver.common.by import By
+from util.BaseUtil import BaseUtil
 
 
 class OMPage(BasePage):
@@ -14,8 +15,8 @@ class OMPage(BasePage):
     def login(self):
         for i in range(10):
             if self.driver.current_url != "http://om.motionglobal.com/index/dashboard":
-                usr = self.get_config_value("OM_Account", "username")
-                pwd = self.get_config_value("OM_Account", "password")
+                usr = BaseUtil().get_config_value("OM_Account", "username")
+                pwd = BaseUtil().get_config_value("OM_Account", "password")
                 self.clear(self.username)
                 self.send_key(self.username, usr)
                 self.clear(self.password)
