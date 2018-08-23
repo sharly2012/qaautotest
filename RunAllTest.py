@@ -43,7 +43,7 @@ def report():
 def send_mail(sender, psw, receiver, smtpserver, report_file):
     with open(report_file, "rb") as f:
         mail_body = f.read()
-    # 定丿邮件内容
+    # 定义邮件内容
     msg = MIMEMultipart()
     body = MIMEText(mail_body, _subtype='html', _charset='utf-8')
     msg['Subject'] = u"自劢化测试报告"

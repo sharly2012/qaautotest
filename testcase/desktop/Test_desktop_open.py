@@ -6,6 +6,7 @@ import unittest
 import openpyxl
 from util.BasePage import BasePage
 from util.logger import Logger
+from util.BaseUtil import BaseUtil
 
 logger = Logger(logger="DesktopHomepageTest").get_log()
 
@@ -21,7 +22,7 @@ class DesktopHomepageTest(unittest.TestCase):
         pass
 
     def test_homepage(self):
-        file_path = os.path.dirname(os.path.abspath('.'))
+        file_path = BaseUtil().get_root_path()
         excel_path = file_path + "/files/website.xlsx"
         print(excel_path)
         sheet_name = "Sheet1"

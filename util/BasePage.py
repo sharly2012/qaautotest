@@ -4,8 +4,6 @@ import pytesseract
 import os
 import time
 import cv2
-import configparser
-import yaml
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import *
