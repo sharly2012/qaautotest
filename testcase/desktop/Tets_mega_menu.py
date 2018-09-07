@@ -1,5 +1,5 @@
 import unittest
-from pages.HomePage import HomePage
+from pages.homepage.HomePage import HomePage
 from util.BrowserDriver import BrowserDriver
 from util.logger import Logger
 
@@ -30,6 +30,7 @@ class TestMegaMenu(unittest.TestCase):
             logger.info("*************************************************************")
             logger.info("url is not correct:", format(e))
             homepage.get_screent_img()
+            raise
 
     def tearDown(self):
         pass

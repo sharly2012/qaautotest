@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from util.BrowserDriver import BrowserDriver
-from pages.HomePage import HomePage
+from pages.homepage.HomePage import HomePage
 from util.logger import Logger
 
 logger = Logger(logger='TestLogin').get_log()
@@ -31,7 +31,7 @@ class TestSearch(unittest.TestCase):
         except Exception as e:
             logger.info("*************************************************************")
             logger.info("search result is not correct:", format(e))
-            homepage.get_screent_img()
+            raise
 
     def tearDown(self):
         pass

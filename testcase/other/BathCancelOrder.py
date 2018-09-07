@@ -95,6 +95,6 @@ def bath_cancel_order(excel_path, sheet_name):
 
 if __name__ == '__main__':
     login()
-    bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
+    # bath_transfer_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
     bath_cancel_order('/Users/admin/test/cancel_order.xlsx', 'Sheet1')
     driver.quit()

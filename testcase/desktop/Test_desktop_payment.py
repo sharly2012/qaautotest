@@ -1,10 +1,10 @@
 import unittest
 import time
 from util.BrowserDriver import BrowserDriver
-from pages.HomePage import HomePage
-from pages.sun_product import SunProduct
-from pages.cart import Cart
-from pages.checkout import Checkout
+from pages.homepage.HomePage import HomePage
+from pages.product.sun_product import SunProduct
+from pages.cart.cart import Cart
+from pages.checkout.checkout import Checkout
 from pages.OMPage import OMPage
 
 
@@ -64,8 +64,7 @@ class TestPayment(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # cls.driver.quit()
-        pass
+        cls.driver.quit()
 
 
 if __name__ == "__main__":

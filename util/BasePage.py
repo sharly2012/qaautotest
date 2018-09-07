@@ -43,7 +43,7 @@ class BasePage(object):
 
     def get_screent_img(self):
         """将页面截图下来"""
-        file_path = os.path.dirname(os.path.abspath('')) + '/screenshots/'
+        file_path = self.path + '/screenshots/'
         now = time.strftime("%Y-%m-%d_%H_%M_%S")
         screen_name = file_path + now + '.png'
         try:
@@ -499,6 +499,3 @@ class BasePage(object):
         verify_code = pytesseract.image_to_string(img).strip()
         logger.info("verify code is: " + verify_code)
         return verify_code
-
-
-

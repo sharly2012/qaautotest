@@ -1,5 +1,5 @@
-from selenium import webdriver
 import os
+from selenium import webdriver
 from time import sleep
 from threading import Thread
 
@@ -20,22 +20,18 @@ def test_baidu_search(browser, url):
         exit()
 
     driver.set_window_size(1440, 900)
-    print
-    u"开始[case_0001]百度搜索"
+    print("开始[case_0001]百度搜索")
     driver.get(url)
 
-    print
-    u"清除搜索中数据，输入搜索关键词"
+    print("清除搜索中数据，输入搜索关键词")
     driver.find_element_by_id("kw").clear()
     driver.find_element_by_id("kw").send_keys(u"开源优测")
 
-    print
-    u"单击 百度一下 按钮 开始搜索"
+    print("单击 百度一下 按钮 开始搜索")
     driver.find_element_by_id("su").click()
     sleep(3)
 
-    print
-    u"关闭浏览器，退出webdriver"
+    print("关闭浏览器，退出webdriver")
     driver.quit()
 
 

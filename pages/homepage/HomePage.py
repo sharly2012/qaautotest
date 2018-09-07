@@ -38,6 +38,8 @@ class HomePage(BasePage):
         try:
             if self.is_visibility(self.geo_cnt):
                 self.click(self.geo_close_btn)
+            else:
+                pass
         except NoSuchElementException as e:
             self.logger.error("Not found GEO pop-up. ---%s" % e)
 
@@ -45,5 +47,7 @@ class HomePage(BasePage):
         try:
             if self.is_visibility(self.EDM_popUp_cnt):
                 self.click(self.EDM_popUp_close_btn)
+            else:
+                pass
         except NoSuchElementException as e:
             self.logger.error("Not found newsletter pop-up. ---%s" % e)

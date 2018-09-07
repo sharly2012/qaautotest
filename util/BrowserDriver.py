@@ -5,12 +5,10 @@ from selenium import webdriver
 from util.logger import Logger
 from util.BaseUtil import BaseUtil
 
-
 logger = Logger(logger="BrowserDriver").get_log()
 
 
 class BrowserDriver(object):
-    # file_path = os.path.dirname(os.path.abspath('.'))
     file_path = BaseUtil().get_root_path()
     name_path = file_path + '/yaml/browser.yaml'
     with open(name_path, 'r') as f:
@@ -40,7 +38,7 @@ class BrowserDriver(object):
 
     def open_browser(self, driver):
         if self.browser == "Firefox":
-            driver = webdriver.Firefox(log_path=self.file_path + "/logs/" + "geckodriver.log")
+            driver = webdriver.Firefox(service_log_path=self.file_path + "/logs/" + "geckodriver.log")
             logger.info("启动火狐浏览器")
         elif self.browser == "Chrome":
             driver = webdriver.Chrome(self.chrome_driver_path)
